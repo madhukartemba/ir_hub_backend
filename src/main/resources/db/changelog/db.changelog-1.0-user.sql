@@ -19,7 +19,7 @@ CREATE TABLE User (
   lastModified DATETIME DEFAULT NULL,
   lastModifiedBy VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (id),
-  UNIQUE KEY uniqueEmail (email),
+  UNIQUE KEY uniqueEmail (email)
 );
 
 CREATE TABLE UserRole (
