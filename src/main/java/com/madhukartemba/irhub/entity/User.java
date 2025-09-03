@@ -39,7 +39,7 @@ public class User extends BaseEntity implements UserDetails {
 
     public enum Role {
         ADMIN,
-        UESR,
+        USER,
     }
 
     private String email;
