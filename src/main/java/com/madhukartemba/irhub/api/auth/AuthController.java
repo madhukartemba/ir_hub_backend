@@ -1,4 +1,4 @@
-package com.madhukartemba.irhub.api.pub;
+package com.madhukartemba.irhub.api.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
