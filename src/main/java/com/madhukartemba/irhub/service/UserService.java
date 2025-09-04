@@ -1,7 +1,7 @@
 package com.madhukartemba.irhub.service;
 
-import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,15 @@ public class UserService {
 
     private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+    public User createAdminUser(CreateUserRequest request) throws Exception {
+        return createUser(request, Set.of(User.Role.ADMIN));
+    }
+
     public User createUser(CreateUserRequest request) throws Exception {
+        return createUser(request, Set.of(User.Role.USER));
+    }
+
+    private User createUser(CreateUserRequest request, Set<User.Role> roles) throws Exception {
         User existing = findByEmail(request.getEmail());
 
         if (existing != null) {
@@ -40,7 +48,7 @@ public class UserService {
             user.setName(request.getEmail());
         }
 
-        user.setRoles(new HashSet<>(Arrays.asList(User.Role.USER)));
+        user.setRoles(new HashSet<>(roles));
 
         return userDAO.save(user);
 
