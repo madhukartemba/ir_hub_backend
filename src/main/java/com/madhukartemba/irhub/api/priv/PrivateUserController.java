@@ -12,7 +12,7 @@ import com.madhukartemba.irhub.resource.UserResource;
 import com.madhukartemba.irhub.service.UserService;
 
 @RestController
-@RequestMapping(value = "/api/private/users", produces = "application/json")
+@RequestMapping(value = "/private/users", produces = "application/json")
 public class PrivateUserController {
 
     @Autowired
