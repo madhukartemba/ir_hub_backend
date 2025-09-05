@@ -11,7 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserResource {
 
-    private String id;
     private String email;
     private String name;
     private Instant created;

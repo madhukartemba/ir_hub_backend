@@ -13,7 +13,6 @@ public class UserResourceAssembler implements BaseAssembler<User, UserResource> 
     public UserResource toModel(User user) {
         UserResource resource = new UserResource();
         BeanUtils.copyProperties(user, resource);
-        resource.setId(user.getId().toString());
         return resource;
     }
 
