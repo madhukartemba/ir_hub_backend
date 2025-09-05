@@ -54,7 +54,7 @@ public class User extends BaseEntity implements UserDetails {
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "UserRole", joinColumns = @JoinColumn(name = "userId"))
     @Enumerated(EnumType.STRING)
-    @Column(name = "roles")
+    @Column(name = "role")
     private Set<Role> roles = new HashSet<>();
 
     // UserDetails fields
