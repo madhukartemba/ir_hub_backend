@@ -48,8 +48,6 @@ public class User extends BaseEntity implements UserDetails {
 
     private String password;
 
-    private String pictureUrl;
-
     @Enumerated(EnumType.STRING)
     private RegistrationMethod registrationMethod = RegistrationMethod.LOCAL;
 
