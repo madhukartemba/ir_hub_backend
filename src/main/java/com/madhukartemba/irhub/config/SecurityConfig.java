@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.madhukartemba.irhub.entity.User;
 import com.madhukartemba.irhub.filter.JWTFilter;
 import com.madhukartemba.irhub.service.CustomUserDetailsService;
 
@@ -33,10 +34,8 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**",
-                        "/health",
-                        "/public/**")
-                .permitAll() // Public routes
+                .requestMatchers("/auth/**", "/health").permitAll()
+                .requestMatchers("/private/**").hasRole(User.Role.ADMIN.name())
                 .anyRequest().authenticated())
                 .build();
     }

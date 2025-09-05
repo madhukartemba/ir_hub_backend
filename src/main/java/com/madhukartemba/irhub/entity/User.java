@@ -54,7 +54,7 @@ public class User extends BaseEntity implements UserDetails {
     private RegistrationMethod registrationMethod = RegistrationMethod.LOCAL;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name="UserRole", joinColumns = @JoinColumn(name = "userId"))
+    @CollectionTable(name = "UserRole", joinColumns = @JoinColumn(name = "userId"))
     @Enumerated(EnumType.STRING)
     @Column(name = "roles")
     private Set<Role> roles = new HashSet<>();
@@ -72,9 +72,8 @@ public class User extends BaseEntity implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<SimpleGrantedAuthority> auths = new HashSet<>();
         roles.forEach(role -> {
-            auths.add(new SimpleGrantedAuthority(role.name()));
+            auths.add(new SimpleGrantedAuthority("ROLE_" + role.name()));
         });
-
         return auths;
     }
 
