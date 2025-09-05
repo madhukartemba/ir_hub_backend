@@ -1,0 +1,37 @@
+-- liquibase formatted sql
+-- changeset madhukartemba:2
+
+CREATE TABLE DeviceVersion (
+    version INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(1000) DEFAULT NULL,
+    id CHAR(36) NOT NULL,
+    created TIMESTAMP DEFAULT NULL,
+    createdBy VARCHAR(255) DEFAULT NULL,
+    lastModified TIMESTAMP DEFAULT NULL,
+    lastModifiedBy VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uniqueVersion (version)
+);
+
+CREATE TABLE Firmware (
+    majorVersion INT NOT NULL,
+    minorVersion INT NOT NULL,
+    description VARCHAR(1024) DEFAULT NULL,
+    id CHAR(36) NOT NULL,
+    created TIMESTAMP DEFAULT NULL,
+    createdBy VARCHAR(255) DEFAULT NULL,
+    lastModified TIMESTAMP DEFAULT NULL,
+    lastModifiedBy VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uniqueFirmwareVersion (majorVersion, minorVersion)
+);
+
+CREATE TABLE DeviceVersionFirmware (
+    deviceVersionId CHAR(36) NOT NULL,
+    firmwareId CHAR(36) NOT NULL,
+    firmwareFile MEDIUMBLOB,
+    PRIMARY KEY (deviceVersionId, firmwareId), 
+    FOREIGN KEY (deviceVersionId) REFERENCES DeviceVersion(id),
+    FOREIGN KEY (firmwareId) REFERENCES Firmware(id)
+);
