@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.madhukartemba.irhub.dao.UserDAO;
 import com.madhukartemba.irhub.entity.User;
@@ -31,6 +32,7 @@ public class UserService {
         return createUser(request, Set.of(User.Role.USER));
     }
 
+    @Transactional
     private User createUser(CreateUserRequest request, Set<User.Role> roles) throws Exception {
         User existing = findByEmail(request.getEmail());
 

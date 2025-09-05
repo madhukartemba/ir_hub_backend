@@ -14,19 +14,17 @@ public class SpringSecurityAuditorAware implements AuditorAware<String> {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
-            return Optional.empty();
+            return Optional.of("system");
         }
 
         Object principal = authentication.getPrincipal();
-
         if (principal instanceof UserDetails userDetails) {
-            return Optional.ofNullable(userDetails.getUsername());
+            return Optional.of(userDetails.getUsername());
         }
-
-        if (principal instanceof String str) {
+        if (principal instanceof String str && !"anonymousUser".equals(str)) {
             return Optional.of(str);
         }
 
-        return Optional.empty();
+        return Optional.of("system");
     }
 }

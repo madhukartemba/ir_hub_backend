@@ -1,6 +1,6 @@
 package com.madhukartemba.irhub.entity;
 
-import java.time.Instant;
+import java.util.Date;
 import java.util.UUID;
 
 import org.hibernate.annotations.JdbcTypeCode;
@@ -17,8 +17,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,17 +33,16 @@ public abstract class BaseEntity {
     private UUID id;
 
     @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(updatable = false)
-    private Instant created;
+    @Column(updatable = false, nullable = false)
+    private Date created;
 
     @CreatedBy
     @Column(updatable = false)
     private String createdBy;
 
     @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    private Instant lastModified;
+    @Column(nullable = false)
+    private Date lastModified;
 
     @LastModifiedBy
     private String lastModifiedBy;
