@@ -1,11 +1,7 @@
 package com.madhukartemba.irhub.config;
 
-import java.time.Instant;
-import java.util.Optional;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
@@ -62,10 +58,5 @@ public class SecurityConfig {
     @Bean
     public AuditorAware<String> auditorProvider() {
         return new SpringSecurityAuditorAware();
-    }
-
-    @Bean
-    public DateTimeProvider dateTimeProvider() {
-        return () -> Optional.of(Instant.now());
     }
 }
