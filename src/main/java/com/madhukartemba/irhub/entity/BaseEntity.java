@@ -1,6 +1,6 @@
 package com.madhukartemba.irhub.entity;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.UUID;
 
 import org.hibernate.annotations.JdbcTypeCode;
@@ -34,7 +34,7 @@ public abstract class BaseEntity {
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
-    private Date created;
+    private Instant created;
 
     @CreatedBy
     @Column(updatable = false)
@@ -42,7 +42,7 @@ public abstract class BaseEntity {
 
     @LastModifiedDate
     @Column(nullable = false)
-    private Date lastModified;
+    private Instant lastModified;
 
     @LastModifiedBy
     private String lastModifiedBy;
