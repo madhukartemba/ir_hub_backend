@@ -25,5 +25,5 @@ CREATE TABLE UserRole (
   userId CHAR(36) NOT NULL,
   role CHAR(255) NOT NULL,
   PRIMARY KEY (userId, role),
-  CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES User(id)
+  CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES User(id) ON DELETE CASCADE
 );
