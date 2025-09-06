@@ -40,7 +40,7 @@ CREATE TABLE Device (
     deviceMacId VARCHAR(255) NOT NULL,
     deviceVersionId CHAR(36) NOT NULL,
     firmwareId CHAR(36) NOT NULL,
-    lastSeenAt TIMESTAMP NOT NULL,
+    lastSeenAt TIMESTAMP DEFAULT NULL,
     id CHAR(36) NOT NULL,
     created TIMESTAMP DEFAULT NULL,
     createdBy VARCHAR(255) DEFAULT NULL,
@@ -48,15 +48,14 @@ CREATE TABLE Device (
     lastModifiedBy VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY macAddress (deviceMacId),
-    FOREIGN KEY (deviceVersionId) REFERENCES DeviceVersion(id),
-    FOREIGN KEY (firmwareId) REFERENCES Firmware(id)
+    FOREIGN KEY (deviceVersionId, firmwareId) REFERENCES DeviceFirmware(deviceVersionId, firmwareId)
 );
 
 CREATE TABLE DeviceEvent (
     deviceId CHAR(36) NOT NULL,
     eventType VARCHAR(100) NOT NULL,
     description VARCHAR(1024) DEFAULT NULL,
-    capturedAt TIMESTAMP NOT NULL,
+    capturedAt TIMESTAMP DEFAULT NULL,
     id CHAR(36) NOT NULL,
     created TIMESTAMP DEFAULT NULL,
     createdBy VARCHAR(255) DEFAULT NULL,
