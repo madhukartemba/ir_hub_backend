@@ -1,5 +1,5 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/db.changelog-1.0-user.sql
+      file: db/changelog/db.changelog-1.1-user.sql
   - include:
-      file: db/changelog/db.changelog-1.1-firmware.sql
+      file: db/changelog/db.changelog-1.2-firmware.sql
