@@ -37,7 +37,7 @@ CREATE TABLE DeviceFirmware (
 );
 
 CREATE TABLE Device (
-    deviceMacId VARCHAR(255) NOT NULL,
+    deviceMacId CHAR(17) NOT NULL,
     deviceVersionId CHAR(36) NOT NULL,
     firmwareId CHAR(36) NOT NULL,
     lastSeenAt TIMESTAMP DEFAULT NULL,
