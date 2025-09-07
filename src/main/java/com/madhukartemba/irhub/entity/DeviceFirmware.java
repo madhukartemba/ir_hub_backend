@@ -2,6 +2,7 @@ package com.madhukartemba.irhub.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -48,8 +49,8 @@ public class DeviceFirmware {
     @NoArgsConstructor
     public static class DeviceFirmwareId implements Serializable {
 
-        private String deviceVersionId;
-        private String firmwareId;
+        private UUID deviceVersionId;
+        private UUID firmwareId;
 
         @Override
         public boolean equals(Object o) {
